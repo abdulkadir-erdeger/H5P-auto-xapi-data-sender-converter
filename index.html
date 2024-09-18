@@ -99,6 +99,10 @@ if (H5P) {
             definition: xapiStatement.object.definition,
         };
 
+        if (xapiStatement.context.contextActivities.parent) {
+            xapiStatement.context.contextActivities.parent[0].id = \`\${window.location.origin + window.location.pathname}\`
+        }
+
         let xhr = new XMLHttpRequest();
         xhr.open("POST", lrsEndpoint + "statements", true);
         xhr.setRequestHeader("Authorization", auth);
