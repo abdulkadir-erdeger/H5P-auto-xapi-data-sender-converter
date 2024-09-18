@@ -14,3 +14,5 @@ Bu uygulama, SCORM paketlerini düzenlemek için bir araçtır. Kullanıcılar, 
 - İnternet bağlantısı (kütüphaneler için)
 
 ## Proje Linki
+
+Projeyi görüntülemek için [bu bağlantıya](https://abdulkadir-erdeger.github.io/H5P-auto-xapi-data-sender-converter/) tıklayın.
