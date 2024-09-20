@@ -75,7 +75,7 @@
             alert("Lütfen bir zip dosyası seçin!");
             return;
           }
-
+          const zipFileName = zipFileInput.files[0].name;
           const file = zipFileInput.files[0];
           const reader = new FileReader();
           const xapiStatementContent = `
@@ -145,7 +145,7 @@ if (H5P) {
                         .setAttribute("aria-valuenow", progress);
                     })
                     .then(function (content) {
-                      saveAs(content, "updated_scorm_package.zip");
+                      saveAs(content, `updated_${zipFileName}.zip`);
                       document.getElementById(
                         "progressContainer"
                       ).style.display = "none"; // İlerleme çubuğunu gizle
