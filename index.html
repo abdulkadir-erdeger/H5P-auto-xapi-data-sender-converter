@@ -135,15 +135,18 @@ if (H5P) {
                   document.getElementById("progressContainer").style.display =
                     "block";
                   zip
-                    .generateAsync({ type: "blob" }, (metadata) => {
-                      // İlerleme güncellemesi
-                      const progress = metadata.percent || 0;
-                      document.getElementById("progressBar").style.width =
-                        progress + "%";
-                      document
-                        .getElementById("progressBar")
-                        .setAttribute("aria-valuenow", progress);
-                    })
+                    .generateAsync(
+                      { type: "blob", compression: "DEFLATE" },
+                      (metadata) => {
+                        // İlerleme güncellemesi
+                        const progress = metadata.percent || 0;
+                        document.getElementById("progressBar").style.width =
+                          progress + "%";
+                        document
+                          .getElementById("progressBar")
+                          .setAttribute("aria-valuenow", progress);
+                      }
+                    )
                     .then(function (content) {
                       saveAs(content, `updated_${zipFileName}`);
                       document.getElementById(
