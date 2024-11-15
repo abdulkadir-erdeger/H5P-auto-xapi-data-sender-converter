@@ -145,7 +145,7 @@ if (H5P) {
                         .setAttribute("aria-valuenow", progress);
                     })
                     .then(function (content) {
-                      saveAs(content, `updated_${zipFileName}.zip`);
+                      saveAs(content, `updated_${zipFileName}`);
                       document.getElementById(
                         "progressContainer"
                       ).style.display = "none"; // İlerleme çubuğunu gizle
