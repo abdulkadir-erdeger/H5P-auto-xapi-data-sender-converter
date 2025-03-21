@@ -83,6 +83,9 @@ let queryParams = new URLSearchParams(window.location.search);
 let lrsEndpoint = queryParams.get('endpoint');
 let auth = queryParams.get('auth');
 let actor = JSON.parse(queryParams.get('actor'));
+let user_id = queryParams.get('user_id');
+let class_id = queryParams.get('class_id');
+let content_id = JSON.parse(queryParams.get('content_id'));
 
 if (H5P) {
     H5P.externalDispatcher.on('xAPI', async function (event) {
@@ -102,6 +105,15 @@ if (H5P) {
         if (xapiStatement.context.contextActivities.parent) {
             xapiStatement.context.contextActivities.parent[0].id = \`\${window.location.origin + window.location.pathname}\`
         }
+
+        // Adding extensions to the context
+        xapiStatement.context.extensions = {
+            "https://example.org/extensions/user-info": {
+                "UserId": user_id || 0,
+                "ClassId": class_id || 0,
+                "ContentId": content_id || 0
+            }
+        };
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", lrsEndpoint + "statements", true);
