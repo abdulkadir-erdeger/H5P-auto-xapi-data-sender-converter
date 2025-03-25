@@ -137,10 +137,15 @@ if (H5P) {
                 .async("string")
                 .then(function (indexHtmlContent) {
                   const scriptTag = '<script src="xapiStatement.js"><\/script>';
+                  // İlk <head> etiketine scriptTag ekleyin.
                   const updatedIndexHtml = indexHtmlContent.replace(
-                    "</head>",
-                    scriptTag + "\n</head>"
+                    /<head>/,
+                    function (match) {
+                      return match + scriptTag + "\n";
+                    }
                   );
+
+                  // Güncellenmiş index.html içeriğini tekrar zip dosyasına yazın.
                   zip.file("index.html", updatedIndexHtml);
 
                   // Düzenlenmiş zip'i oluştur ve indir
